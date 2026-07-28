@@ -33,8 +33,8 @@ int apresentarMenu(){
 }
 
 //validacao de entrada do usuario
-float validandoEntrada(){
-    float valor = 0;
+double validandoEntrada(){
+    double valor = 0;
     std ::cin >> valor;
     while(std::cin.fail()){
         std::cin.clear(); //limpa a entrada errada
@@ -48,41 +48,46 @@ float validandoEntrada(){
 }
 
 //recebendo valores do usuario
-float recebeValorX(){
-    float x = 0;
+double recebeValorX(){
+    double x = 0;
     std::cout << "Digite o valor de x: ";
     x = validandoEntrada();
     return x;
 }
-float recebeValorY(){
-    float y = 0;
+double recebeValorY(){
+    double y = 0;
     std::cout << "Digite o valor de y: ";
     y = validandoEntrada();
     return y;
 }
 
 //adicao
-float adicao(float x, float y){
+double adicao(double x, double y){
     return x + y;
 }
 
 //subtracao
-float subtracao(float x, float y){
+double subtracao(double x, double y){
     return x - y;
 }
 
 //multiplicacao
-float multiplicacao(float x, float y){
+double multiplicacao(double x, double y){
     return x * y;
 }
 
 //divisao
-float divisao(float x, float y){
+double divisao(double x, double y){
+//excluindo a possibilidade de divisao por zero
+    if(y == 0){
+        std::cout << "Erro: Divisao por zero nao e permitida.\n";
+        return NAN;
+    }
     return x / y;
 }
 
 //raiz de x
-float raiz(float x, float y){
+double raiz(double x, double y){
 //raiz par de numero negativo nao tem solucao real
     if(x < 0 && static_cast<int>(y) % 2 == 0){
         std::cout << "Erro: Raiz de numero negativo nao e permitida para radicais pares.\n";
@@ -96,12 +101,12 @@ float raiz(float x, float y){
 }
 
 //potenciacao de x
-float potenciacao(float x, float y){
+double potenciacao(double x, double y){
     return pow(x, y);
 }
 
 //porcentagem de x
-float porcentagem(float x, float y){
+double porcentagem(double x, double y){
     return (x * y) / 100;
 }
 
@@ -109,7 +114,7 @@ float porcentagem(float x, float y){
 int main() {
 //criacao de variaveis
     int opcao = 0;
-    float x = 0, y = 0;
+    double x = 0, y = 0;
 //loop para apresentar o menu ao usuario
     do {
         opcao = apresentarMenu();
