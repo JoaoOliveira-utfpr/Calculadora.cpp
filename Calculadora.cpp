@@ -19,21 +19,45 @@ int apresentarMenu(){
 //recebe a opção do usuario
     std::cout << "Digite a opcao desejada: ";
     std::cin >> opcao;
+//valida a entrada do usuario
+    while(std::cin.fail()){
+        std::cin.clear(); //limpa a entrada errada
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //descarta a entrada errada
+        std::cout << "=============================\n";
+        std::cout << "Opcao invalida.\n";
+        std::cout << "Digite uma opcao valida: "; //solicita nova entrada
+        std::cin >> opcao;
+    }
     std::cout << "==============================\n";
     return opcao;
+}
+
+//validacao de entrada do usuario
+float validandoEntrada(){
+    float valor = 0;
+    std ::cin >> valor;
+    while(std::cin.fail()){
+        std::cin.clear(); //limpa a entrada errada
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //descarta a entrada errada
+        std::cout << "=============================\n";
+        std::cout << "Entrada invalida.\n";
+        std::cout << "Digite um numero valido: "; //solicita nova entrada
+        std::cin >> valor;
+    }
+    return valor;
 }
 
 //recebendo valores do usuario
 float recebeValorX(){
     float x = 0;
     std::cout << "Digite o valor de x: ";
-    std::cin >> x;
+    x = validandoEntrada();
     return x;
 }
 float recebeValorY(){
     float y = 0;
     std::cout << "Digite o valor de y: ";
-    std::cin >> y;
+    y = validandoEntrada();
     return y;
 }
 
@@ -59,9 +83,14 @@ float divisao(float x, float y){
 
 //raiz de x
 float raiz(float x, float y){
-    if( x < 0 && static_cast<int>(y) % 2 == 0){
+//raiz par de numero negativo nao tem solucao real
+    if(x < 0 && static_cast<int>(y) % 2 == 0){
         std::cout << "Erro: Raiz de numero negativo nao e permitida para radicais pares.\n";
         return NAN;
+    }
+//raiz impar de numero negativo
+    if(x < 0){
+        return -pow(-x, 1.0 / y);
     }
     return pow(x, 1.0 / y);
 }
