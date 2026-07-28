@@ -47,6 +47,35 @@ float subtracao(float x, float y){
     return x - y;
 }
 
+//multiplicacao
+float multiplicacao(float x, float y){
+    return x * y;
+}
+
+//divisao
+float divisao(float x, float y){
+    return x / y;
+}
+
+//raiz de x
+float raiz(float x, float y){
+    if( x < 0 && static_cast<int>(y) % 2 == 0){
+        std::cout << "Erro: Raiz de numero negativo nao e permitida para radicais pares.\n";
+        return NAN;
+    }
+    return pow(x, 1.0 / y);
+}
+
+//potenciacao de x
+float potenciacao(float x, float y){
+    return pow(x, y);
+}
+
+//porcentagem de x
+float porcentagem(float x, float y){
+    return (x * y) / 100;
+}
+
 //FUNÇÃO PRINCIPAL
 int main() {
 //criacao de variaveis
@@ -70,18 +99,33 @@ int main() {
                 break;
             case 3:
                 std::cout << "Voce escolheu Multiplicacao.\n";
+                x = recebeValorX();
+                y = recebeValorY();
+                std::cout << "Resultado: " << multiplicacao(x, y) << "\n";
                 break;
             case 4:
                 std::cout << "Voce escolheu Divisao.\n";
+                x = recebeValorX();
+                y = recebeValorY();
+                std::cout << "Resultado: " << divisao(x, y) << "\n";
                 break;
             case 5:
                 std::cout << "Voce escolheu Raiz de x.\n";
+                x = recebeValorX();
+                y = recebeValorY();
+                std::cout << "Resultado: " << raiz(x, y) << "\n";
                 break;
             case 6:
                 std::cout << "Voce escolheu Potenciacao de x.\n";
+                x = recebeValorX();
+                y = recebeValorY();
+                std::cout << "Resultado: " << potenciacao(x, y) << "\n";
                 break;
             case 7:
                 std::cout << "Voce escolheu Porcentagem de x.\n";
+                x = recebeValorX();
+                y = recebeValorY();
+                std::cout << "Resultado: %" << porcentagem(x, y) << "\n";
                 break;
             case 0:
                 std::cout << "Saindo do programa...\n";
